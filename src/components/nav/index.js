@@ -12,12 +12,22 @@ const Nav = () => (
                     to="/login"
                 >
                     Login
-                </Link> 
+                </Link>                 
+            </li>
+            <li className="nav__item">
                 <Link 
                     className="nav__link"
                     to="/dashboard"
                 >
                     Dashboard
+                </Link>
+            </li>
+            <li className="nav__item">
+                <Link 
+                    className="nav__link"
+                    to="/challenges"
+                >
+                    Challenges
                 </Link>
             </li>
         </ul>
