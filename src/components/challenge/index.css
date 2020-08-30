@@ -1,0 +1,38 @@
+.challenge {
+    min-height: 100vh;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.challenge__img {
+    max-width: 450px;
+}
+
+.challenge__link {
+    cursor: pointer;
+    display: block;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: .6rem 1rem;
+
+    color: #1F1E28;
+    text-decoration: none;
+
+    background-color: #99DFD5;
+    border: 0;
+    border-radius: 3px;
+
+    transition: .2s ease-in-out;
+}
+
+a:hover {
+    opacity: .5;
+}
