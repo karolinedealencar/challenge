@@ -1,6 +1,7 @@
 .nav {
     width: 80%;
     margin: 0 auto;
+    padding-top: 2rem;
     display: flex;
     justify-content: flex-end;
 }

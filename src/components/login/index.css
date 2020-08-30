@@ -1,0 +1,16 @@
+.login {
+    min-height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.login__img {
+    max-width: 450px;
+}

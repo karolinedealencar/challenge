@@ -8,9 +8,56 @@ body {
     color: #1F1E28;
     font-family: 'Raleway', sans-serif;
     margin: 0;
-    padding-top: 2rem;
 }
 
 img {
     width: 100%;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    width: 100%;
+    display: block;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+label span {
+    display: block;
+    font-weight: 800;
+}
+
+label input {
+    width: 100%;
+    padding: .6rem;
+    background-color: transparent;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px 0px #e5e3f2;
+}
+
+form button {
+    cursor: pointer;
+    display: block;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: .6rem 1rem;
+
+    color: #1F1E28;
+    text-decoration: none;
+
+    background-color: #99DFD5;
+    border: 0;
+    border-radius: 3px;
+
+    transition: .2s ease-in-out;
+}
+
+form button:hover {
+    opacity: .5;
 }

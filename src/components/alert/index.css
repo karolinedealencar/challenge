@@ -1,0 +1,14 @@
+.alert {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    
+    color: #1F1E28;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;;
+}
+
+.alert.error {
+    background-color: #ED6360;
+}
