@@ -9,6 +9,7 @@ import SignUp from './pages/sign-up'
 import Dashboard from './pages/dashboard'
 import Challenge from './pages/challenge'
 import Challenges from './pages/challenges'
+import RegisterChallenge from './pages/registerChallenge'
 
 const App = () => (
   <>
@@ -22,6 +23,7 @@ const App = () => (
       <Dashboard path="/dashboard" />
       <Challenge path="challenges/:invoiceId" />
       <Challenges path="/challenges" />
+      <RegisterChallenge path="/challenges/register" />
     </Router>
   </>
 );

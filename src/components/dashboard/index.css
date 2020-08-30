@@ -58,3 +58,24 @@
     border-radius: 4px;
     background-color: #ED6360;
 }
+
+.dashboard__register {
+    cursor: pointer;
+    display: block;
+    max-width: 1=250px;
+    margin: 0 auto;
+    padding: .6rem 1rem;
+
+    color: #1F1E28;
+    text-decoration: none;
+
+    background-color: #99DFD5;
+    border: 0;
+    border-radius: 3px;
+
+    transition: .2s ease-in-out;
+}
+
+.dashboard__register:hover {
+    opacity: .5;
+}

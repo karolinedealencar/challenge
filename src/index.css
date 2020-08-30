@@ -32,7 +32,8 @@ label span {
     font-weight: 800;
 }
 
-label input {
+label input,
+label textarea {
     width: 100%;
     padding: .6rem;
     background-color: transparent;

@@ -11,6 +11,13 @@ const Dashboard = () => (
 
         <h1>Dashboard <span role="img" aria-label="Victory Hand">✌️</span></h1>
 
+        <Link 
+            className="dashboard__register"
+            to="/challenges/register"
+        >
+            Register Challenge
+        </Link>
+
         <section className="dashboard__section">
             <h2 className="dashboard__title">My Challenges</h2>
             <ul className="dashboard__list">
