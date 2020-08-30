@@ -2,14 +2,14 @@ import React from "react";
 
 import "./index.css"
 
-const Login = () => (
-    <main className="login">
+const SignUp = () => (
+    <main className="signUp">
 
-        <div className="login__img">
+        <div className="signUp__img">
             <img src="share.svg" alt="Two girls sharing content" />
         </div>
 
-        <h1>Login <span role="img" aria-label="Victory Hand">✌️</span></h1>
+        <h1>Sign Up <span role="img" aria-label="Victory Hand">✌️</span></h1>
 
         <form>
             <label>
@@ -20,11 +20,15 @@ const Login = () => (
                 <span>Password</span>
                 <input type="password" />
             </label>
+            <label>
+                <span>Password Confirm</span>
+                <input type="password" />
+            </label>
             <button>
-                Login
+                Sign Up
             </button>
         </form>
     </main>
 );
 
-export default Login
+export default SignUp
