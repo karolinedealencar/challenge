@@ -13,6 +13,12 @@ const Nav = () => (
                 >
                     Login
                 </Link> 
+                <Link 
+                    className="nav__link"
+                    to="/dashboard"
+                >
+                    Dashboard
+                </Link>
             </li>
         </ul>
     </nav>
