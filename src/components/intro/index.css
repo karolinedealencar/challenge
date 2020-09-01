@@ -1,18 +1,4 @@
-.intro {
-    min-height: 100vh;
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 4rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    text-align: center;
-}
-
 .intro__title {
-    margin: 0;
     font-size: 4rem;
 }
 
@@ -21,36 +7,8 @@
     font-size: 1.3rem;
 }
 
-.intro__link {
-    display: block;
-    max-width: 150px;
-    margin: 0 auto;
-    padding: .6rem 1rem;
-
-    color: #1F1E28;
-    text-decoration: none;
-
-    background-color: #99DFD5;
-    border-radius: 3px;
-
-    transition: .2s ease-in-out;
-}
-
-.intro__link:hover {
-    opacity: .5;
-}
-
-.intro__img {
-    margin-top: 2.4rem;
-}
-
 @media (max-width: 495px) {
-    .intro__title {
-        font-size: 2.4rem;
-    }
-
     .intro__description {
         font-size: 1rem;
-    }
-    
+    }    
 }

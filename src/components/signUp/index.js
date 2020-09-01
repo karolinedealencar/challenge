@@ -1,20 +1,15 @@
 import React from "react";
 
-import "./index.css"
+import Illustration from '../illustration'
 
 const SignUp = () => (
-    <main className="signUp">
-
-        <div className="signUp__img">
-            <img src="share.svg" alt="Two girls sharing content" />
-        </div>
-
+    <main className="container">
+        <Illustration />
         <h1>Sign Up <span role="img" aria-label="Victory Hand">✌️</span></h1>
-
         <form>
             <label>
                 <span>Username</span>
-                <input type="text" />
+                <input type="text" placeholder="ex: soraka" />
             </label>
             <label>
                 <span>Password</span>
@@ -24,9 +19,7 @@ const SignUp = () => (
                 <span>Password Confirm</span>
                 <input type="password" />
             </label>
-            <button>
-                Sign Up
-            </button>
+            <button className="action">Sign Up</button>
         </form>
     </main>
 );

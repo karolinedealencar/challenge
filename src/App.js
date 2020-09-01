@@ -7,9 +7,9 @@ import Home from './pages/home'
 import Login from './pages/login'
 import SignUp from './pages/sign-up'
 import Dashboard from './pages/dashboard'
-import Challenge from './pages/challenge'
+import ChallengeDetail from './pages/challengeDetail'
 import Challenges from './pages/challenges'
-import RegisterChallenge from './pages/registerChallenge'
+import ChallengeRegister from './pages/challengeRegister'
 
 const App = () => (
   <>
@@ -21,9 +21,9 @@ const App = () => (
       <Login path="/login" />
       <SignUp path="/sign-up" />
       <Dashboard path="/dashboard" />
-      <Challenge path="challenges/:invoiceId" />
+      <ChallengeDetail path="challenges/:challengeID" />
       <Challenges path="/challenges" />
-      <RegisterChallenge path="/challenges/register" />
+      <ChallengeRegister path="/challenges/register" />
     </Router>
   </>
 );
