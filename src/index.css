@@ -33,9 +33,15 @@ label {
     text-align: left;
 }
 
-label span {
-    display: block;
+label p {
+    margin: .2rem;
     font-weight: 800;
+}
+
+label span {
+    color: #ED6360;
+    margin-left: .2rem;
+    font-size: .8rem;
 }
 
 label input,
