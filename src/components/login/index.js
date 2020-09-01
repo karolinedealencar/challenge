@@ -22,9 +22,10 @@ const Login = () => {
                         name="username" 
                         type="text" 
                         placeholder="ex: soraka" 
-                        ref={register({ required: true })}
+                        ref={register({ required: true, minLength: 5 })}
                     />
-                    { errors.username && <span>Username is required.</span> }
+                    { errors.username && errors.username.type === "required" && <span>Username is required.</span> }
+                    { errors.username && errors.username.type === "minLength" && <span>Username must contain at least 5 characters.</span> }
                 </label>
                 <label>
                     <p>Password</p>
