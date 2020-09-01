@@ -33,7 +33,7 @@ const Login = () => {
                         type="password" 
                         ref={register({ required: true })}
                     />
-                    {errors.password && <span>Password is required.</span> }
+                    { errors.password && <span>Password is required.</span> }
                 </label>
                 <button className="action">Login</button>
             </form>
