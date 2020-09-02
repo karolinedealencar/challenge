@@ -13,9 +13,35 @@ const SignUp = () => {
     if (myContext.userLoggedIn) navigate("/dashboard");
   });
 
-  const onSubmit = (data) => {
+  const handleSignUp = async (username, password) => {
+    const signUp = await fetch(
+      "https://challenge-backend.herokuapp.com/user/signup",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      }
+    );
+    const response = await signUp.json();
+
+    if (response.message) throw Error(response.message);
+    return response;
+  };
+
+  const onSubmit = async (data) => {
     const { username, password } = data;
-    console.log(username, password);
+    try {
+      const login = await handleSignUp(username, password);
+      localStorage.setItem("token", login.token);
+      myContext.setUserLoggedIn(true);
+      myContext.setAlert({ message: null, type: null });
+      navigate("/dashboard");
+    } catch (error) {
+      myContext.setAlert({ message: error.message, type: "error" });
+    }
   };
 
   return (
@@ -51,17 +77,6 @@ const SignUp = () => {
             ref={register({ required: true })}
           />
           {errors.password && <span>Password is required.</span>}
-        </label>
-        <label>
-          <p>Password Confirm</p>
-          <input
-            name="passwordConfirm"
-            type="password"
-            ref={register({ required: true })}
-          />
-          {errors.passwordConfirm && (
-            <span>Password confirmation is required.</span>
-          )}
         </label>
         <button className="action">Sign Up</button>
       </form>
