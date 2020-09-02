@@ -19,6 +19,13 @@ const Nav = () => {
         <ul className="nav__list">
           {!myContext.userLoggedIn && (
             <li className="nav__item">
+              <Link className="nav__link" to="/">
+                Home
+              </Link>
+            </li>
+          )}
+          {!myContext.userLoggedIn && (
+            <li className="nav__item">
               <Link className="nav__link" to="/login">
                 Login
               </Link>
