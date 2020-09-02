@@ -42,6 +42,15 @@ const App = () => {
       {userLoggedIn && <Redirect noThrow from="/sign-up" to="/dashboard" />}
       {userLoggedIn && <Redirect noThrow from="/" to="/dashboard" />}
 
+      {!userLoggedIn && <Redirect noThrow from="/dashboard" to="/login" />}
+      {!userLoggedIn && (
+        <Redirect noThrow from="/challenges/:challengeID" to="/login" />
+      )}
+      {!userLoggedIn && <Redirect noThrow from="/challenges" to="/login" />}
+      {!userLoggedIn && (
+        <Redirect noThrow from="/challenges/register" to="/login" />
+      )}
+
       <Router>
         <Home path="/" />
         <Login path="/login" />
