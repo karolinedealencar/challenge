@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Router } from "@reach/router";
+import React, { useState, useEffect } from "react";
+import { Router, Redirect } from "@reach/router";
 
 import Nav from "./components/nav";
 import Alert from "./components/alert";
@@ -26,10 +26,21 @@ const App = () => {
     setAlert,
   };
 
+  useEffect(() => {
+    localStorage.getItem("token")
+      ? setUserLoggedIn(true)
+      : setUserLoggedIn(false);
+  }, []);
+
   return (
     <AppContext.Provider value={userSettings}>
       {alert.message && <Alert alert={alert} />}
+
       <Nav />
+
+      {userLoggedIn && <Redirect noThrow from="/login" to="/dashboard" />}
+      {userLoggedIn && <Redirect noThrow from="/sign-up" to="/dashboard" />}
+      {userLoggedIn && <Redirect noThrow from="/" to="/dashboard" />}
 
       <Router>
         <Home path="/" />

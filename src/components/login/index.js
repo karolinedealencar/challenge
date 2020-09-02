@@ -32,6 +32,7 @@ const Login = () => {
       const login = await handleLogin(username, password);
       localStorage.setItem("token", login.token);
       myContext.setUserLoggedIn(true);
+      myContext.setAlert({ message: null, type: null });
     } catch (error) {
       myContext.setAlert({ message: error.message, type: "error" });
     }

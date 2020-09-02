@@ -1,39 +1,55 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "@reach/router";
+import { Redirect } from "@reach/router";
 
-import "./index.css"
+import "./index.css";
+import AppContext from "../appContext";
 
-const Nav = () => (
+const Nav = () => {
+  const myContext = useContext(AppContext);
+  const [redirect, setRedirect] = useState(false);
+
+  const handleLogout = () => {
+    myContext.setUserLoggedIn(false);
+    localStorage.removeItem("token");
+    setRedirect(true);
+  };
+
+  return (
     <header>
-        <nav className="nav">
-            <ul className="nav__list">
-                <li className="nav__item">
-                    <Link 
-                        className="nav__link"
-                        to="/login"
-                    >
-                        Login
-                    </Link>                 
-                </li>
-                <li className="nav__item">
-                    <Link 
-                        className="nav__link"
-                        to="/dashboard"
-                    >
-                        Dashboard
-                    </Link>
-                </li>
-                <li className="nav__item">
-                    <Link 
-                        className="nav__link"
-                        to="/challenges"
-                    >
-                        Challenges
-                    </Link>
-                </li>
-            </ul>
-        </nav>
+      {redirect && <Redirect to="/login" />}
+      <nav className="nav">
+        <ul className="nav__list">
+          {!myContext.userLoggedIn && (
+            <li className="nav__item">
+              <Link className="nav__link" to="/login">
+                Login
+              </Link>
+            </li>
+          )}
+          {myContext.userLoggedIn && (
+            <li className="nav__item">
+              <Link className="nav__link" to="/dashboard">
+                Dashboard
+              </Link>
+            </li>
+          )}
+          {myContext.userLoggedIn && (
+            <li className="nav__item">
+              <Link className="nav__link" to="/challenges">
+                Challenges
+              </Link>
+            </li>
+          )}
+          {myContext.userLoggedIn && (
+            <li className="nav__item" onClick={handleLogout}>
+              Logout
+            </li>
+          )}
+        </ul>
+      </nav>
     </header>
-);
+  );
+};
 
-export default Nav
+export default Nav;
