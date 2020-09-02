@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { navigate } from "@reach/router";
 
 import Illustration from "../illustration";
 import AppContext from "../appContext";
@@ -26,6 +27,10 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   const myContext = useContext(AppContext);
 
+  useEffect(() => {
+    if (myContext.userLoggedIn) navigate("/dashboard");
+  });
+
   const onSubmit = async (data) => {
     const { username, password } = data;
     try {
@@ -33,6 +38,7 @@ const Login = () => {
       localStorage.setItem("token", login.token);
       myContext.setUserLoggedIn(true);
       myContext.setAlert({ message: null, type: null });
+      navigate("/dashboard");
     } catch (error) {
       myContext.setAlert({ message: error.message, type: "error" });
     }

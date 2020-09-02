@@ -1,23 +1,20 @@
-import React, { useContext, useState } from "react";
-import { Link } from "@reach/router";
-import { Redirect } from "@reach/router";
+import React, { useContext } from "react";
+import { Link, navigate } from "@reach/router";
 
 import "./index.css";
 import AppContext from "../appContext";
 
 const Nav = () => {
   const myContext = useContext(AppContext);
-  const [redirect, setRedirect] = useState(false);
 
   const handleLogout = () => {
     myContext.setUserLoggedIn(false);
     localStorage.removeItem("token");
-    setRedirect(true);
+    navigate("/login");
   };
 
   return (
     <header>
-      {redirect && <Redirect to="/login" />}
       <nav className="nav">
         <ul className="nav__list">
           {!myContext.userLoggedIn && (
