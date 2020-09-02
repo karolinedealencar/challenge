@@ -1,9 +1,11 @@
 import React from "react";
 
-import "./index.css"
+import "./index.css";
 
-const Alert = () => (    
-    <div className="alert error">Your credencial is invalid!</div>
+const Alert = ({ alert }) => (
+  <div className={alert.type === "error" ? "alert error" : "alert success"}>
+    {alert.message}!
+  </div>
 );
 
-export default Alert
+export default Alert;
