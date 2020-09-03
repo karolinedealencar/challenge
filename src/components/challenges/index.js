@@ -11,6 +11,7 @@ import AppContext from "../appContext";
 const Challenges = () => {
   const myContext = useContext(AppContext);
   const [challenges, setChallenges] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -39,11 +40,14 @@ const Challenges = () => {
   };
 
   const getChallenges = async () => {
+    setLoading(true)
     try {
       const challenges = await handleChallenges();
       if (challenges.length) setChallenges(challenges);
     } catch (error) {
       myContext.setAlert({ message: error.message, type: "error" });
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -59,7 +63,12 @@ const Challenges = () => {
       <label>
         <input type="search" placeholder="Search" />
       </label>
-      {challenges.length && <ChallengeList challenges={challenges} />}
+      {
+        !loading ?
+          challenges.length ? <ChallengeList challenges={challenges} /> 
+                            : <p>No challenges! <span role="img" aria-label="Crying face">😢</span></p> 
+          : <p>Loading...</p>
+      }
     </main>
   );
 };
