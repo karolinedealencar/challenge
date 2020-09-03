@@ -27,7 +27,7 @@ const SignUp = () => {
     );
     const response = await signUp.json();
 
-    if (response.message) throw Error(response.message);
+    if (response.message || response.msg) throw Error(response.message);
     return response;
   };
 
