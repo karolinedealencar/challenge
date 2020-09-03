@@ -18,6 +18,12 @@ const Dashboard = () => {
     } else {
       getUserChallenges();
       getUserFavorites();
+      setTimeout(() => {
+        myContext.setAlert({
+          message: null,
+          type: null
+        });
+      }, 10000)
     }
   }, []);
 
