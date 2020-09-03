@@ -11,6 +11,10 @@ import AppContext from "../appContext";
 const Challenges = () => {
   const myContext = useContext(AppContext);
   const [challenges, setChallenges] = useState([]);
+  const [challengesSearch, setChallengesSearch]= useState({
+    search: '',
+    result: []
+  })
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -20,6 +24,15 @@ const Challenges = () => {
       getChallenges();
     }
   }, []);
+
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase()
+    const results = challenges.filter(challenge => challenge.title.toLowerCase().match(value))
+    setChallengesSearch({
+      search: value,
+      result: results
+    })
+  }
 
   const handleChallenges = async () => {
     const challenges = await fetch(
@@ -61,13 +74,18 @@ const Challenges = () => {
         </span>
       </h1>
       <label>
-        <input type="search" placeholder="Search" />
+        <input 
+          type="search" 
+          placeholder="Search" 
+          onChange={handleSearch}
+        />
       </label>
       {
         !loading ?
-          challenges.length ? <ChallengeList challenges={challenges} /> 
-                            : <p>No challenges! <span role="img" aria-label="Crying face">😢</span></p> 
-          : <p>Loading...</p>
+          challengesSearch.length || challenges.length 
+            ? <ChallengeList challenges={challengesSearch.result.length ? challengesSearch.result : challenges} /> 
+            : <p>No challenges! <span role="img" aria-label="Crying face">😢</span></p> 
+        : <p>Loading...</p>
       }
     </main>
   );
