@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { navigate } from "@reach/router";
 
 import "./index.css";
@@ -9,10 +9,36 @@ import AppContext from "../appContext";
 
 const Challenges = () => {
   const myContext = useContext(AppContext);
+  const [challenges, setChallenges] = useState([]);
 
   useEffect(() => {
     if (!myContext.userLoggedIn) navigate("/login");
+    getChallenges();
   });
+
+  const handleChallenges = async () => {
+    const challenges = await fetch(
+      "https://challenge-backend.herokuapp.com/challenge",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Token: localStorage.getItem("token"),
+        },
+      }
+    );
+    const response = await challenges.json();
+
+    if (response.message) throw Error(response.message);
+    return response;
+  };
+
+  const getChallenges = async () => {
+    const challenges = await handleChallenges();
+    console.log(challenges);
+    if (challenges.length) setChallenges(challenges);
+  };
 
   return (
     <main className="container challenges">
@@ -26,7 +52,7 @@ const Challenges = () => {
       <label>
         <input type="search" placeholder="Search" />
       </label>
-      <ChallengeList />
+      {challenges.length && <ChallengeList challenges={challenges} />}
     </main>
   );
 };
