@@ -36,7 +36,6 @@ const Challenges = () => {
 
   const getChallenges = async () => {
     const challenges = await handleChallenges();
-    console.log(challenges);
     if (challenges.length) setChallenges(challenges);
   };
 
