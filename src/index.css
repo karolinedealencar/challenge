@@ -81,12 +81,13 @@ h1 {
     display: block;
     max-width: 250px;
     margin: 0 auto;
-    padding: .6rem 1rem;
+    padding: .8rem 1.4rem;
 
     color: #1F1E28;
+    font-size: 1rem;
     text-decoration: none;
 
-    background-color: #99DFD5;
+    background-color: #ED6360;
     border: 0;
     border-radius: 3px;
 
