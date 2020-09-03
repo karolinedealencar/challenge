@@ -38,7 +38,6 @@ const Login = () => {
       localStorage.setItem("token", login.token);
       myContext.setUserLoggedIn(true);
       myContext.setAlert({ message: null, type: null });
-      navigate("/dashboard");
     } catch (error) {
       myContext.setAlert({ message: error.message, type: "error" });
     }
@@ -60,7 +59,7 @@ const Login = () => {
             name="username"
             type="text"
             placeholder="ex: soraka"
-            ref={register({ required: true, minLength: 5 })}
+            ref={register({ required: true, minLength: 6 })}
           />
           {errors.username && errors.username.type === "required" && (
             <span>Username is required.</span>

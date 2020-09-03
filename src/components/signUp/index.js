@@ -60,7 +60,7 @@ const SignUp = () => {
             name="username"
             type="text"
             placeholder="ex: soraka"
-            ref={register({ required: true, minLength: 5 })}
+            ref={register({ required: true, minLength: 6 })}
           />
           {errors.username && errors.username.type === "required" && (
             <span>Username is required.</span>

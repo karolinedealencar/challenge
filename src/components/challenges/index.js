@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import { navigate } from "@reach/router";
 
@@ -14,7 +15,7 @@ const Challenges = () => {
   useEffect(() => {
     if (!myContext.userLoggedIn) navigate("/login");
     getChallenges();
-  });
+  }, []);
 
   const handleChallenges = async () => {
     const challenges = await fetch(
@@ -35,8 +36,12 @@ const Challenges = () => {
   };
 
   const getChallenges = async () => {
-    const challenges = await handleChallenges();
-    if (challenges.length) setChallenges(challenges);
+    try {
+      const challenges = await handleChallenges();
+      if (challenges.length) setChallenges(challenges);
+    } catch (error) {
+      myContext.setAlert({ message: error.message, type: "error" });
+    }
   };
 
   return (

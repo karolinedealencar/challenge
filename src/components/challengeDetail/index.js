@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import { navigate } from "@reach/router";
 
@@ -12,7 +13,7 @@ const ChallengeDetail = () => {
   useEffect(() => {
     if (!myContext.userLoggedIn) navigate("/login");
     getChallengeDetail();
-  });
+  }, []);
 
   const handleChallengeDetail = async () => {
     const link = window.location.href.split("-");
@@ -36,8 +37,13 @@ const ChallengeDetail = () => {
   };
 
   const getChallengeDetail = async () => {
-    const detail = await handleChallengeDetail();
-    setDetail(detail);
+    try {
+      const detail = await handleChallengeDetail();
+      setDetail(detail);
+    } catch (error) {
+      myContext.setAlert({ message: error.message, type: "error" });
+    }
+    
   };
 
   const handleRegisterFavorite = async () => {

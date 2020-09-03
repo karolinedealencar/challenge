@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "@reach/router";
 import { navigate } from "@reach/router";
@@ -15,7 +16,7 @@ const Dashboard = () => {
     if (!myContext.userLoggedIn) navigate("/login");
     getUserChallenges();
     getUserFavorites();
-  });
+  }, []);
 
   const handleUserChallenges = async () => {
     const challenges = await fetch(
@@ -54,13 +55,21 @@ const Dashboard = () => {
   };
 
   const getUserChallenges = async () => {
-    const challenges = await handleUserChallenges();
-    if (challenges.length) setUserChallenges(challenges);
+    try {
+      const challenges = await handleUserChallenges();
+      if (challenges.length) setUserChallenges(challenges);
+    } catch (error) {
+      myContext.setAlert({ message: error.message, type: "error" });
+    }
   };
 
   const getUserFavorites = async () => {
-    const challenges = await handleUserFavorites();
-    if (challenges.length) setUserFavorites(challenges);
+    try {
+      const challenges = await handleUserFavorites();
+      if (challenges.length) setUserFavorites(challenges);
+    } catch (error) {
+      myContext.setAlert({ message: error.message, type: "error" });
+    }
   };
 
   return (
