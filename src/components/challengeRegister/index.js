@@ -70,6 +70,7 @@ const ChallengeRegister = () => {
           <p>Description</p>
           <textarea
             name="description"
+            rows="10"
             ref={register({ required: true, minLength: 10 })}
           />
           {errors.description && errors.description.type === "required" && (
