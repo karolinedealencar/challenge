@@ -10,7 +10,7 @@ const ChallengeRegister = () => {
   const myContext = useContext(AppContext);
 
   useEffect(() => {
-    if (!myContext.userLoggedIn) navigate("/login");
+    if (!localStorage.getItem("token")) navigate("/login");
   });
 
   const onSubmit = async (data) => {

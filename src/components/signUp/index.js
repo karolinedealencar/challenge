@@ -10,7 +10,7 @@ const SignUp = () => {
   const myContext = useContext(AppContext);
 
   useEffect(() => {
-    if (myContext.userLoggedIn) navigate("/dashboard");
+    if (localStorage.getItem("token")) navigate("/dashboard");
   });
 
   const handleSignUp = async (username, password) => {

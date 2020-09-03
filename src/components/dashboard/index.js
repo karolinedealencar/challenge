@@ -13,9 +13,12 @@ const Dashboard = () => {
   const [userFavorites, setUserFavorites] = useState(null);
 
   useEffect(() => {
-    if (!myContext.userLoggedIn) navigate("/login");
-    getUserChallenges();
-    getUserFavorites();
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      getUserChallenges();
+      getUserFavorites();
+    }
   }, []);
 
   const handleUserChallenges = async () => {

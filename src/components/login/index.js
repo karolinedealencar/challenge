@@ -28,7 +28,7 @@ const Login = () => {
   const myContext = useContext(AppContext);
 
   useEffect(() => {
-    if (myContext.userLoggedIn) navigate("/dashboard");
+    if (localStorage.getItem("token")) navigate("/dashboard");
   });
 
   const onSubmit = async (data) => {

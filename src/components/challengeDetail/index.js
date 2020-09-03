@@ -11,8 +11,11 @@ const ChallengeDetail = () => {
   const [detail, setDetail] = useState({});
 
   useEffect(() => {
-    if (!myContext.userLoggedIn) navigate("/login");
-    getChallengeDetail();
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      getChallengeDetail();
+    }
   }, []);
 
   const handleChallengeDetail = async () => {

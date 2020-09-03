@@ -4,13 +4,10 @@ import { navigate } from "@reach/router";
 
 import "./index.css";
 import Illustration from "../illustration";
-import AppContext from "../appContext";
 
 const Intro = () => {
-  const myContext = useContext(AppContext);
-
   useEffect(() => {
-    if (myContext.userLoggedIn) navigate("/dashboard");
+    if (localStorage.getItem("token")) navigate("/dashboard");
   });
 
   return (

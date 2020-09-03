@@ -13,8 +13,11 @@ const Challenges = () => {
   const [challenges, setChallenges] = useState([]);
 
   useEffect(() => {
-    if (!myContext.userLoggedIn) navigate("/login");
-    getChallenges();
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    } else {
+      getChallenges();
+    }
   }, []);
 
   const handleChallenges = async () => {
