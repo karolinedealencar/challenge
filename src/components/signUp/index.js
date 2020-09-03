@@ -66,7 +66,7 @@ const SignUp = () => {
             <span>Username is required.</span>
           )}
           {errors.username && errors.username.type === "minLength" && (
-            <span>Username must contain at least 5 characters.</span>
+            <span>Username must contain at least 6 characters.</span>
           )}
         </label>
         <label>
@@ -74,9 +74,14 @@ const SignUp = () => {
           <input
             name="password"
             type="password"
-            ref={register({ required: true })}
+            ref={register({ required: true, minLength: 6 })}
           />
-          {errors.password && <span>Password is required.</span>}
+          {errors.password && errors.password.type === "required" && (
+            <span>Password is required.</span>
+          )}
+          {errors.password && errors.password.type === "minLength" && (
+            <span>Password must contain at least 6 characters.</span>
+          )}
         </label>
         <button className="action">Sign Up</button>
       </form>

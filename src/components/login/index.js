@@ -65,7 +65,7 @@ const Login = () => {
             <span>Username is required.</span>
           )}
           {errors.username && errors.username.type === "minLength" && (
-            <span>Username must contain at least 5 characters.</span>
+            <span>Username must contain at least 6 characters.</span>
           )}
         </label>
         <label>
