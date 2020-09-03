@@ -72,8 +72,17 @@ const ChallengeDetail = () => {
   };
 
   const registerFavorite = async () => {
-    const register = await handleRegisterFavorite();
-    return register;
+    try {
+      await handleRegisterFavorite();
+      myContext.setAlert({
+        message: "Challenge added to favorites",
+        type: "success",
+      });
+      navigate("/dashboard")
+    } catch (error) {
+      myContext.setAlert({ message: error.message, type: "error" });
+    }
+    
   };
 
   return (
