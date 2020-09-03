@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   const handleUserChallenges = async () => {
     const challenges = await fetch(
-      "http://localhost:4000/challenge/my-challenges",
+      "https://challenge-backend.herokuapp.com/challenge/my-challenges",
       {
         method: "GET",
         headers: {
@@ -36,14 +36,17 @@ const Dashboard = () => {
   };
 
   const handleUserFavorites = async () => {
-    const challenges = await fetch("http://localhost:4000/favorite/", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Token: localStorage.getItem("token"),
-      },
-    });
+    const challenges = await fetch(
+      "https://challenge-backend.herokuapp.com/favorite/",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Token: localStorage.getItem("token"),
+        },
+      }
+    );
     const response = await challenges.json();
 
     if (response.message) throw Error(response.message);

@@ -6,14 +6,17 @@ import Illustration from "../illustration";
 import AppContext from "../appContext";
 
 const handleLogin = async (username, password) => {
-  const login = await fetch("http://localhost:4000/user/login", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, password }),
-  });
+  const login = await fetch(
+    "https://challenge-backend.herokuapp.com/user/login",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    }
+  );
   const response = await login.json();
 
   if (response.message) throw Error(response.message);

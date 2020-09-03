@@ -19,7 +19,7 @@ const ChallengeDetail = () => {
     const index = link.length - 1;
 
     const challenges = await fetch(
-      `http://localhost:4000/challenge/detail?id=${link[index]}`,
+      `https://challenge-backend.herokuapp.com/challenge/detail?id=${link[index]}`,
       {
         method: "GET",
         headers: {
@@ -44,15 +44,18 @@ const ChallengeDetail = () => {
     const link = window.location.href.split("-");
     const index = link.length - 1;
 
-    const challenges = await fetch(`http://localhost:4000/favorite/register`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Token: localStorage.getItem("token"),
-      },
-      body: JSON.stringify({ id: link[index] }),
-    });
+    const challenges = await fetch(
+      `https://challenge-backend.herokuapp.com/favorite/register`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ id: link[index] }),
+      }
+    );
     const response = await challenges.json();
 
     if (response.message) throw Error(response.message);
