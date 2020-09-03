@@ -13,9 +13,33 @@ const ChallengeRegister = () => {
     if (!myContext.userLoggedIn) navigate("/login");
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { title, description, link } = data;
-    console.log(title, description, link);
+    await handleRegister(title, description, link);
+    myContext.setAlert({
+      message: "Challenge registered successfully",
+      type: "success",
+    });
+    navigate("/dashboard");
+  };
+
+  const handleRegister = async (title, description, link) => {
+    const register = await fetch(
+      "https://challenge-backend.herokuapp.com/challenge/register",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ title, description, link }),
+      }
+    );
+    const response = await register.json();
+
+    if (response.message) throw Error(response.message);
+    return response;
   };
 
   return (
