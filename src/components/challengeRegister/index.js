@@ -57,10 +57,10 @@ const ChallengeRegister = () => {
           <input
             name="title"
             type="text"
-            ref={register({ 
-              required: true, 
+            ref={register({
+              required: true,
               minLength: 5,
-              pattern: /^[A-Za-z0-9]+$/i 
+              pattern: /^[A-Za-z0-9" "]+$/i,
             })}
           />
           {errors.title && errors.title.type === "required" && (
