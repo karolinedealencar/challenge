@@ -24,18 +24,15 @@ const ChallengeRegister = () => {
   };
 
   const handleRegister = async (title, description, link) => {
-    const register = await fetch(
-      "https://challenge-backend.herokuapp.com/challenge/register",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Token: localStorage.getItem("token"),
-        },
-        body: JSON.stringify({ title, description, link }),
-      }
-    );
+    const register = await fetch("http://localhost:4000/challenge/register", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ title, description, link }),
+    });
     const response = await register.json();
 
     if (response.message) throw Error(response.message);

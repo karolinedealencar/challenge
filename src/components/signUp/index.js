@@ -14,17 +14,14 @@ const SignUp = () => {
   });
 
   const handleSignUp = async (username, password) => {
-    const signUp = await fetch(
-      "https://challenge-backend.herokuapp.com/user/signup",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      }
-    );
+    const signUp = await fetch("http://localhost:4000/user/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
     const response = await signUp.json();
 
     if (response.message) throw Error(response.message);

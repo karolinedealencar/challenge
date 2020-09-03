@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { navigate } from "@reach/router";
 
 import "./index.css";
@@ -7,42 +7,85 @@ import AppContext from "../appContext";
 
 const ChallengeDetail = () => {
   const myContext = useContext(AppContext);
+  const [detail, setDetail] = useState({});
 
   useEffect(() => {
     if (!myContext.userLoggedIn) navigate("/login");
+    getChallengeDetail();
   });
+
+  const handleChallengeDetail = async () => {
+    const link = window.location.href.split("-");
+    const index = link.length - 1;
+
+    const challenges = await fetch(
+      `http://localhost:4000/challenge/detail?id=${link[index]}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Token: localStorage.getItem("token"),
+        },
+      }
+    );
+    const response = await challenges.json();
+
+    if (response.message) throw Error(response.message);
+    return response;
+  };
+
+  const getChallengeDetail = async () => {
+    const detail = await handleChallengeDetail();
+    setDetail(detail);
+  };
+
+  const handleRegisterFavorite = async () => {
+    const link = window.location.href.split("-");
+    const index = link.length - 1;
+
+    const challenges = await fetch(`http://localhost:4000/favorite/register`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Token: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ id: link[index] }),
+    });
+    const response = await challenges.json();
+
+    if (response.message) throw Error(response.message);
+    return response;
+  };
+
+  const registerFavorite = async () => {
+    const register = await handleRegisterFavorite();
+    return register;
+  };
 
   return (
     <main className="container challenge">
       <Illustration />
       <h1>
-        Chole Ting Workout Challenge{" "}
+        {detail.title}{" "}
         <span role="img" aria-label="Victory Hand">
           ✌️
         </span>
       </h1>
-      <div>
+      <button className="favorite" type="button" onClick={registerFavorite}>
         <span role="img" aria-label="Star emoji">
           ⭐
         </span>{" "}
-        20
-      </div>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
+        {detail.favorites}
+      </button>
+      <p>{detail.description}</p>
       <a
         className="action"
-        href="facebook.com"
+        href={detail.link}
         title="Join the group"
         target="_blank"
+        rel="noopener noreferrer "
       >
         Join the group!
       </a>
